@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TeamsSimplifiedV2:jar">
+    <output-path>$PROJECT_DIR$/../../../minecraftServer1.20.2/plugins</output-path>
+    <root id="archive" name="TeamsSimplifiedV2.jar">
+      <element id="module-output" name="TeamsSimplifiedV2" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>
