@@ -44,6 +44,9 @@ public class TeamCommand implements CommandExecutor {
             case "invite":
                 return new TeamInviteCommand().onCommand(commandSender, command, s, args);
 
+            case "delinvite":
+                return new TeamDelInviteCommand().onCommand(commandSender, command, s, args);
+
             case "promote":
                 return new TeamPromoteCommand().onCommand(commandSender, command, s, args);
 
