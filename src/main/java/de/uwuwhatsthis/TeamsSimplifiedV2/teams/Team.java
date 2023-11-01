@@ -94,14 +94,18 @@ public class Team implements Comparable<Team> {
         return null;
     }
 
-    public boolean isInvited(Player player){
-        return invitedPlayers.contains(player.getUniqueId());
+    public Errors joinTeam(Player player){
+        return joinTeam(player, false);
     }
 
-    public Errors joinTeam(Player player){
+    public Errors joinTeam(Player player, boolean invited){
         players.add(player.getUniqueId());
 
         Main.getManager().updateDisplayName(player, this);
+
+        if (invited){
+            invitedPlayers.remove(player.getUniqueId());
+        }
 
         return Errors.SUCCESS;
     }
@@ -125,6 +129,22 @@ public class Team implements Comparable<Team> {
             addAll(moderators);
             add(owner);
         }};
+    }
+
+    public Errors promotePlayer(Player player){
+        players.remove(player.getUniqueId());
+        moderators.add(player.getUniqueId());
+
+        Main.getManager().saveTeams();
+        return Errors.SUCCESS;
+    }
+
+    public Errors demotePlayer(Player player){
+        moderators.remove(player.getUniqueId());
+        players.add(player.getUniqueId());
+
+        Main.getManager().saveTeams();
+        return Errors.SUCCESS;
     }
 
     public boolean isOwner(Player player){
@@ -206,5 +226,9 @@ public class Team implements Comparable<Team> {
 
     public void setOpen(boolean open) {
         isOpen = open;
+    }
+
+    public boolean isInvited(Player player){
+        return invitedPlayers.contains(player.getUniqueId());
     }
 }

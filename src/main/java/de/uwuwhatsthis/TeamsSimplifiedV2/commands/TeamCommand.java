@@ -38,6 +38,18 @@ public class TeamCommand implements CommandExecutor {
             case "leave":
                 return new TeamLeaveCommand().onCommand(commandSender, command, s, args);
 
+            case "join":
+                return new TeamJoinCommand().onCommand(commandSender, command, s, args);
+
+            case "invite":
+                return new TeamInviteCommand().onCommand(commandSender, command, s, args);
+
+            case "promote":
+                return new TeamPromoteCommand().onCommand(commandSender, command, s, args);
+
+            case "demote":
+                return new TeamDemoteCommand().onCommand(commandSender, command, s, args);
+
             case "force-reload-data":
                 if (!commandSender.isOp()){
                     commandSender.sendMessage("§cInsufficient permissions!");

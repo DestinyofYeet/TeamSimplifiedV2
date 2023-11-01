@@ -256,7 +256,8 @@ public class TeamManager {
     }
 
     public void stopRenderTask(){
-        this.task.cancel();
+        if (this.task != null)
+            this.task.cancel();
         extensionBlueMap.shutdown();
     }
 
