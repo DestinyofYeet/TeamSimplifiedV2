@@ -8,7 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TeamConfirmDelete {
+public class TeamConfirmDeleteCommand {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args){
         if (!commandSender.hasPermission("TeamsSimplifiedV2.team.delete.own")){
             commandSender.sendMessage("§cInsufficient permissions!");

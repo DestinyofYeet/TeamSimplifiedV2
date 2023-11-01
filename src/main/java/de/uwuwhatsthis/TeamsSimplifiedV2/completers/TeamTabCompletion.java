@@ -40,7 +40,7 @@ public class TeamTabCompletion implements TabCompleter {
                     add("kick");
                 }};
 
-            } else if (args.length == 2 && (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("confirmdelete") || args[0].equalsIgnoreCase("edit"))){
+            } else if (args.length == 2 && (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("edit"))){
                 if (sender instanceof ConsoleCommandSender ){
                     return Main.getManager().getAllTeamNames();
                 } else if(sender instanceof Player player){

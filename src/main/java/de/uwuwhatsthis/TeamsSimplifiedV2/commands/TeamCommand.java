@@ -32,8 +32,11 @@ public class TeamCommand implements CommandExecutor {
             case "edit":
                 return new TeamEditCommand().onCommand(commandSender, command, s, args);
 
+            case "delete":
+                return new TeamDeleteCommand().onCommand(commandSender, command, s, args);
+
             case "confirmdelete":
-                return new TeamConfirmDelete().onCommand(commandSender, command, s, args);
+                return new TeamConfirmDeleteCommand().onCommand(commandSender, command, s, args);
 
             case "leave":
                 return new TeamLeaveCommand().onCommand(commandSender, command, s, args);

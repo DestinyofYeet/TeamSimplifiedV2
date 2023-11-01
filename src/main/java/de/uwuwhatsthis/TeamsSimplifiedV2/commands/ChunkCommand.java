@@ -1,7 +1,7 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.commands;
 
-import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunks.ChunkClaimCommand;
-import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunks.ChunkUnclaimCommand;
+import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunk.ChunkClaimCommand;
+import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunk.ChunkUnclaimCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

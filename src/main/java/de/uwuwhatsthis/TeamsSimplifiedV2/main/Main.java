@@ -1,9 +1,7 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.main;
 
 import de.uwuwhatsthis.TeamsSimplifiedV2.commands.ChunkCommand;
-import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunks.ChunkClaimCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.commands.TeamCommand;
-import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunks.ChunkUnclaimCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.completers.TeamTabCompletion;
 import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnPlayerJoinEvent;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
