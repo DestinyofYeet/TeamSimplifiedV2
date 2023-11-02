@@ -3,6 +3,7 @@ package de.uwuwhatsthis.TeamsSimplifiedV2.teams;
 import de.uwuwhatsthis.TeamsSimplifiedV2.main.Main;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Errors;
 import org.bukkit.entity.Player;
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -157,6 +158,10 @@ public class Team implements Comparable<Team> {
         return null;
     }
 
+    public boolean isPlayerPartOfTeam(Player player){
+        return getCompleteListOfPlayers().contains(player.getUniqueId());
+    }
+
     public boolean isOwner(Player player){
         return (player.getUniqueId().equals(this.owner));
     }
@@ -185,6 +190,16 @@ public class Team implements Comparable<Team> {
 
     public ArrayList<Chunk> getClaimedChunks() {
         return claimedChunks;
+    }
+
+    public ArrayList<Chunk> getLoadedChunks(){
+        return new ArrayList<>(){{
+            for (Chunk chunk: claimedChunks){
+                if (chunk.isChunkLoaded()){
+                    add(chunk);
+                }
+            }
+        }};
     }
 
     public void setClaimedChunks(ArrayList<Chunk> claimedChunks) {

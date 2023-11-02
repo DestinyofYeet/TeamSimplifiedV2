@@ -3,6 +3,7 @@ package de.uwuwhatsthis.TeamsSimplifiedV2.commands.team;
 import de.uwuwhatsthis.TeamsSimplifiedV2.main.Main;
 import de.uwuwhatsthis.TeamsSimplifiedV2.teams.Chunk;
 import de.uwuwhatsthis.TeamsSimplifiedV2.teams.Team;
+import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -58,12 +59,6 @@ public class TeamInfoCommand {
             }
         }};
 
-        int amountOfChunkChunkloaded = 0;
-
-        for (Chunk chunk: team.getClaimedChunks()){
-            if (chunk.isChunkLoaded()) amountOfChunkChunkloaded ++;
-        }
-
         String realColor = team.getColor().replace("&", "§");
 
         String explosionsEnabled = team.isExplosionsEnabled() ? "Yes" : "No";
@@ -75,7 +70,7 @@ public class TeamInfoCommand {
                 .append("§6Team members: §a").append(String.join(", ", players)).append("§r\n")
                 .append("§6Explosions enabled: §a").append(explosionsEnabled).append("\n")
                 .append("§6Chunks claimed: §a").append(team.getClaimedChunks().size()).append("\n")
-                .append("§6Chunks chunkloaded: §a").append(amountOfChunkChunkloaded);
+                .append("§6Chunks chunkloaded: §a").append(team.getLoadedChunks().size()).append("/").append(Main.getPlugin().getConfig().getInt(Defaults.CONFIG_MAX_LOADED_CHUNKS_PER_TEAM.getValue()));
 
         commandSender.sendMessage(builder.toString());
 

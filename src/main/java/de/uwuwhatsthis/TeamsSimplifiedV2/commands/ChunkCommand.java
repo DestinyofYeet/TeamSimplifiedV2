@@ -26,6 +26,7 @@ public class ChunkCommand implements CommandExecutor {
             case "info" -> new ChunkInfoCommand().onCommand(commandSender, command, s, args);
             case "revoke-claim" -> new ChunkRevokeClaim().onCommand(commandSender, command, s, args);
             case "explosions" -> new ChunkExplosionsCommand().onCommand(commandSender, command, s, args);
+            case "load" -> new ChunkLoadCommand().onCommand(commandSender, command, s, args);
             default -> {
                 commandSender.sendMessage("§cInvalid option!");
                 yield true;

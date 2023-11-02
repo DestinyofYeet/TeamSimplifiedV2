@@ -1,5 +1,6 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.teams;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -80,15 +81,12 @@ public class Chunk implements Comparable<Chunk> {
         return isChunkLoaded;
     }
 
-    public UUID getWorldID() {
-        return worldID;
-    }
-
     public boolean isExplosionEnabledSet() {
         return explosionEnabledSet;
     }
 
     public void setChunkLoaded(boolean chunkLoaded) {
         isChunkLoaded = chunkLoaded;
+        Bukkit.getWorld(this.getWorldUUID()).setChunkForceLoaded(chunkX, chunkZ, chunkLoaded);
     }
 }

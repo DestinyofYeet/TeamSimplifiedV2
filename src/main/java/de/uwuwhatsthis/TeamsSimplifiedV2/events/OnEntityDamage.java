@@ -7,6 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
+import java.util.Arrays;
+
 public class OnEntityDamage implements Listener {
 
     @EventHandler
@@ -18,6 +20,8 @@ public class OnEntityDamage implements Listener {
         if (team == null) return;
 
         Chunk chunkWithData = team.getChunkData(chunk);
+
+        if (!Arrays.asList(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION, EntityDamageEvent.DamageCause.BLOCK_EXPLOSION).contains(event.getCause())) return;
 
         if (chunkWithData.isExplosionEnabledSet()){
             if (!chunkWithData.isExplosionEnabled()){

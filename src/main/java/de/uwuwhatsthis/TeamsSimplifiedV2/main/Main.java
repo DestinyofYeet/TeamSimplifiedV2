@@ -4,9 +4,7 @@ import de.uwuwhatsthis.TeamsSimplifiedV2.commands.ChunkCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.commands.TeamCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.completers.ChunkTabCompleter;
 import de.uwuwhatsthis.TeamsSimplifiedV2.completers.TeamTabCompletion;
-import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnEntityDamage;
-import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnEntityExplodeEvent;
-import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnPlayerJoinEvent;
+import de.uwuwhatsthis.TeamsSimplifiedV2.events.*;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
 import de.uwuwhatsthis.TeamsSimplifiedV2.teams.TeamManager;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.bstats.Metrics;
@@ -30,6 +28,7 @@ public class Main extends JavaPlugin {
 
         config.addDefault(Defaults.CONFIG_MAX_TEAM_NAME_LENGTH.getValue(), 20);
         config.addDefault(Defaults.CONFIG_MAX_TEAM_TAG_LENGTH.getValue(), 5);
+        config.addDefault(Defaults.CONFIG_MAX_LOADED_CHUNKS_PER_TEAM.getValue(), 2);
         config.addDefault(Defaults.CONFIG_SHOW_FANCY_TAB_NAME.getValue(), true);
         config.addDefault(Defaults.CONFIG_EXTENSIONS_ENABLE_DYNMAP.getValue(), true);
         config.addDefault(Defaults.CONFIG_EXTENSIONS_ENABLE_BLUEMAP.getValue(), true);
@@ -53,12 +52,14 @@ public class Main extends JavaPlugin {
         pluginManager.registerEvents(new OnPlayerJoinEvent(), this);
         pluginManager.registerEvents(new OnEntityExplodeEvent(), this);
         pluginManager.registerEvents(new OnEntityDamage(), this);
+        pluginManager.registerEvents(new OnPlayerInteractEvent(), this);
 
         if (config.getBoolean(Defaults.CONFIG_BSTATS_ENABLE.getValue())){
             new Metrics(this, 20170);
         }
 
         Main.getManager().triggerRerender();
+        Main.getManager().registerForceLoadedChunks();
 
         getLogger().info("Done");
     }

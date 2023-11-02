@@ -21,16 +21,22 @@ public class ChunkTabCompleter implements TabCompleter {
         }
 
         if (args.length == 1){
-            return new ArrayList<>(){{
+            ArrayList<String> list = new ArrayList<>(){{
                 add("claim");
                 add("unclaim");
-                add("revoke-claim");
                 add("explosions");
                 add("info");
+                add("load");
             }};
+
+            if (commandSender.hasPermission("TeamsSimplifiedV2.chunk.removeclaim")){
+                list.add("revoke-claim");
+            }
+
+            return list;
         }
 
-        if (args.length == 2 && args[0].equals("explosions")){
+        if ((args.length == 2) && (args[0].equals("explosions") || args[0].equals("load"))){
             return new ArrayList<>(){{
                 add("enable");
                 add("disable");

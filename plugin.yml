@@ -43,6 +43,11 @@ permissions:
       TeamsSimplifiedV2.chunk.unclaim: true
       TeamsSimplifiedV2.chunk.removeclaim: false
       TeamsSimplifiedV2.chunk.info: true
+      TeamsSimplifiedV2.chunk.load: true
+
+  TeamsSimplifiedV2.chunk.load:
+    description: Lets you load a chunk
+    default: true
 
   TeamsSimplifiedV2.chunk.overrideaccess:
     description: Lets you do stuff in a claimed chunk as if it would be yours

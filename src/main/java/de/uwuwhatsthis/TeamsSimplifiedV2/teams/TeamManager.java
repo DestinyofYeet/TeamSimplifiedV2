@@ -8,6 +8,7 @@ import de.uwuwhatsthis.TeamsSimplifiedV2.extensions.Bluemap.ExtensionBlueMap;
 import de.uwuwhatsthis.TeamsSimplifiedV2.main.Main;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Errors;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -71,6 +72,14 @@ public class TeamManager {
         }
 
         return null;
+    }
+
+    public void registerForceLoadedChunks(){
+        for (Team team: allTeams){
+            for (Chunk chunk: team.getLoadedChunks()){
+                Bukkit.getWorld(chunk.getWorldUUID()).setChunkForceLoaded(chunk.getChunkX(), chunk.getChunkZ(), true);
+            }
+        }
     }
 
     public Team getTeamByName(String name){
