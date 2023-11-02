@@ -36,7 +36,7 @@ public class ColorMapping {
         final Color defaultColor = colorMap.get("&7");
 
 
-        if (teamColor == null || teamColor.length() == 0){
+        if (teamColor == null || teamColor.isEmpty()){
             return putAlphaOnColor(defaultColor);
         }
 

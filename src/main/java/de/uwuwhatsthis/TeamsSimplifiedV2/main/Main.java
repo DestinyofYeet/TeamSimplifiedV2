@@ -2,6 +2,7 @@ package de.uwuwhatsthis.TeamsSimplifiedV2.main;
 
 import de.uwuwhatsthis.TeamsSimplifiedV2.commands.ChunkCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.commands.TeamCommand;
+import de.uwuwhatsthis.TeamsSimplifiedV2.completers.ChunkTabCompleter;
 import de.uwuwhatsthis.TeamsSimplifiedV2.completers.TeamTabCompletion;
 import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnPlayerJoinEvent;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
@@ -41,6 +42,7 @@ public class Main extends JavaPlugin {
         }
 
         getCommand("chunk").setExecutor(new ChunkCommand());
+        getCommand("chunk").setTabCompleter(new ChunkTabCompleter());
 
         getCommand("team").setExecutor(new TeamCommand());
         getCommand("team").setTabCompleter(new TeamTabCompletion());

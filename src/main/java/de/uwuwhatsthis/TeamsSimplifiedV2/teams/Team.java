@@ -110,7 +110,7 @@ public class Team implements Comparable<Team> {
         return Errors.SUCCESS;
     }
 
-    public Errors leaveTeam(Player player){
+    public Errors removePlayer(Player player){
         TeamRank rank = getTeamRank(player);
 
         if (rank == TeamRank.MODERATOR){
@@ -120,7 +120,7 @@ public class Team implements Comparable<Team> {
         }
 
         Main.getManager().clearDisplayName(player);
-
+        Main.getManager().saveTeams();
         return Errors.SUCCESS;
     }
 

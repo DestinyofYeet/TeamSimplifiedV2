@@ -56,6 +56,12 @@ public class TeamCommand implements CommandExecutor {
             case "demote":
                 return new TeamDemoteCommand().onCommand(commandSender, command, s, args);
 
+            case "kick":
+                return new TeamKickCommand().onCommand(commandSender, command, s, args);
+
+            case "list":
+                return new TeamListCommand().onCommand(commandSender, command, s, args);
+
             case "force-reload-data":
                 if (!commandSender.isOp()){
                     commandSender.sendMessage("§cInsufficient permissions!");

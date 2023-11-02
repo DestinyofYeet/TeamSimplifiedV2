@@ -1,5 +1,6 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.utils;
 
+import de.uwuwhatsthis.TeamsSimplifiedV2.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,6 +17,15 @@ public class Utils {
 
         return true;
     };
+
+    public static boolean isInTeam(Player player){
+        if (Main.getManager().getTeamByPlayer(player) == null){
+            player.sendMessage("§cYou need to be in a team to run that command!");
+            return false;
+        }
+
+        return true;
+    }
 
     public static String getNameOfPlayer(UUID uuid){
         String name;

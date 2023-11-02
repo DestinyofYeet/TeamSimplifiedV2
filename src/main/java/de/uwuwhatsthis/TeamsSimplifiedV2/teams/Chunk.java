@@ -9,6 +9,7 @@ public class Chunk implements Comparable<Chunk> {
     private UUID worldID;
 
     private boolean explosionEnabled;
+    private boolean explosionEnabledSet;
 
     private boolean isChunkLoaded;
 
@@ -19,6 +20,7 @@ public class Chunk implements Comparable<Chunk> {
 
         explosionEnabled = false;
         isChunkLoaded = false;
+        explosionEnabledSet = false;
     }
 
     public Chunk(Player player){
@@ -67,6 +69,7 @@ public class Chunk implements Comparable<Chunk> {
 
     public void setExplosionEnabled(boolean explosionEnabled) {
         this.explosionEnabled = explosionEnabled;
+        this.explosionEnabledSet = true;
     }
 
     public boolean isChunkLoaded() {

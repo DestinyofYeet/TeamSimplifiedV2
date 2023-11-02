@@ -35,7 +35,7 @@ public class TeamLeaveCommand {
             return true;
         }
 
-        Errors status = team.leaveTeam(player);
+        Errors status = team.removePlayer(player);
 
         if (status == Errors.SUCCESS){
             player.sendMessage("§aSuccessfully left the team!");
