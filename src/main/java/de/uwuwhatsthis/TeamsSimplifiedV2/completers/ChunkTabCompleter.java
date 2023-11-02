@@ -16,14 +16,25 @@ public class ChunkTabCompleter implements TabCompleter {
     }
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] args) {
-        if (command.getName().equals("chunk")){
-            if (args.length == 1){
-                return new ArrayList<>(){{
-                    add("claim");
-                    add("unclaim");
-                    add("revoke-claim");
-                }};
-            }
+        if (!command.getName().equals("chunk")){
+            return null;
+        }
+
+        if (args.length == 1){
+            return new ArrayList<>(){{
+                add("claim");
+                add("unclaim");
+                add("revoke-claim");
+                add("explosions");
+                add("info");
+            }};
+        }
+
+        if (args.length == 2 && args[0].equals("explosions")){
+            return new ArrayList<>(){{
+                add("enable");
+                add("disable");
+            }};
         }
 
         return null;

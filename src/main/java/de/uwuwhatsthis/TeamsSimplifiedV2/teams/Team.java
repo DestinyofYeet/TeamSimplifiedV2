@@ -14,13 +14,13 @@ public class Team implements Comparable<Team> {
     private ArrayList<UUID> players;
     private ArrayList<UUID> moderators;
     private UUID owner;
-    private boolean isOpen;
+    private boolean isOpen, explosionsEnabled;
 
     private ArrayList<Chunk> claimedChunks;
     private ArrayList<UUID> invitedPlayers;
 
 
-    public Team(String name, String tag, String color, ArrayList<UUID> players, ArrayList<UUID> moderators, UUID owner, boolean isOpen, ArrayList<Chunk> claimedChunks, ArrayList<UUID> invitedPlayers){
+    public Team(String name, String tag, String color, ArrayList<UUID> players, ArrayList<UUID> moderators, UUID owner, boolean isOpen, ArrayList<Chunk> claimedChunks, ArrayList<UUID> invitedPlayers, boolean explosionsEnabled){
         this.name = name;
         this.tag = tag;
         this.color = color;
@@ -33,6 +33,8 @@ public class Team implements Comparable<Team> {
 
         this.claimedChunks = claimedChunks;
         this.invitedPlayers = invitedPlayers;
+
+        this.explosionsEnabled = explosionsEnabled;
     }
 
     public Errors claimChunk(org.bukkit.Chunk chunk, Player player){
@@ -147,6 +149,14 @@ public class Team implements Comparable<Team> {
         return Errors.SUCCESS;
     }
 
+    public Chunk getChunkData(Chunk wantedChunk){
+        for (Chunk chunk: claimedChunks){
+            if (chunk.compareTo(wantedChunk) == 0) return chunk;
+        }
+
+        return null;
+    }
+
     public boolean isOwner(Player player){
         return (player.getUniqueId().equals(this.owner));
     }
@@ -161,6 +171,7 @@ public class Team implements Comparable<Team> {
 
     public void setName(String name) {
         this.name = name;
+        Main.getManager().saveTeams();
     }
 
     public String getTag() {
@@ -169,6 +180,7 @@ public class Team implements Comparable<Team> {
 
     public void setTag(String tag) {
         this.tag = tag;
+        Main.getManager().saveTeams();
     }
 
     public ArrayList<Chunk> getClaimedChunks() {
@@ -218,17 +230,29 @@ public class Team implements Comparable<Team> {
 
     public void setColor(String color) {
         this.color = color;
+        Main.getManager().saveTeams();
     }
 
     public void setOwner(UUID owner) {
         this.owner = owner;
+        Main.getManager().saveTeams();
     }
 
     public void setOpen(boolean open) {
         isOpen = open;
+        Main.getManager().saveTeams();
     }
 
     public boolean isInvited(Player player){
         return invitedPlayers.contains(player.getUniqueId());
+    }
+
+    public boolean isExplosionsEnabled() {
+        return explosionsEnabled;
+    }
+
+    public void setExplosionsEnabled(boolean explosionsEnabled) {
+        this.explosionsEnabled = explosionsEnabled;
+        Main.getManager().saveTeams();
     }
 }

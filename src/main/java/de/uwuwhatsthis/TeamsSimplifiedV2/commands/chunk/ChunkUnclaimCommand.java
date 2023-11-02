@@ -1,6 +1,7 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunk;
 
 import de.uwuwhatsthis.TeamsSimplifiedV2.main.Main;
+import de.uwuwhatsthis.TeamsSimplifiedV2.teams.TeamRank;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Errors;
 import de.uwuwhatsthis.TeamsSimplifiedV2.teams.Team;
 import de.uwuwhatsthis.TeamsSimplifiedV2.teams.TeamManager;
@@ -36,7 +37,12 @@ public class ChunkUnclaimCommand implements CommandExecutor {
             return true;
         }
 
-        Main.getPlugin().getLogger().info(Arrays.toString(args));
+        TeamRank rank = playerTeam.getTeamRank(player);
+
+        if (rank == TeamRank.PLAYER){
+            player.sendMessage("§cYou need to be a moderator or the owner to unclaim chunks!");
+            return true;
+        }
 
         if (args.length > 0){
             if (args[0].equals("all")){

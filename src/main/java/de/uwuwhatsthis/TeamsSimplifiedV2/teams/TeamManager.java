@@ -41,7 +41,7 @@ public class TeamManager {
         return null;
     }
 
-    public boolean isChuckClaimed(int chunkX, int chunkZ, UUID worldID){
+    public boolean isChunkClaimed(int chunkX, int chunkZ, UUID worldID){
         return isChunkClaimed(new Chunk(chunkX, chunkZ, worldID));
     }
 
@@ -55,6 +55,10 @@ public class TeamManager {
         }
 
         return false;
+    }
+
+    public Team chunkIsClaimedBy(int chunkX, int chunkZ, UUID worldID){
+        return chunkIsClaimedBy(new Chunk(chunkX, chunkZ, worldID));
     }
 
     public Team chunkIsClaimedBy(Chunk chunk){
@@ -242,7 +246,7 @@ public class TeamManager {
     }
 
     private Team getNewDefaultTeam(String name, String tag, String color, Player owner){
-        return new Team(name, tag, color, new ArrayList<>(), new ArrayList<>(), owner.getUniqueId(), false, new ArrayList<>(), new ArrayList<>());
+        return new Team(name, tag, color, new ArrayList<>(), new ArrayList<>(), owner.getUniqueId(), false, new ArrayList<>(), new ArrayList<>(), false);
     }
 
     public ArrayList<Team> getAllTeams() {

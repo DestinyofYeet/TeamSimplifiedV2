@@ -86,7 +86,7 @@ public class TeamEditCommand {
 
                 teamToEdit.setColor(newValue);
                 updateMembers = true;
-                commandSender.sendMessage("§aSuccessfully changed color!");
+                commandSender.sendMessage("§aSuccessfully changed color to " + teamToEdit.getColor().replace("&", "§") + "this color§a!");
                 break;
 
             case "tag":
@@ -109,13 +109,39 @@ public class TeamEditCommand {
 
             case "accessibility":
                 if (newValue.equalsIgnoreCase("closed")){
-                    teamToEdit.setOpen(false);
-                    commandSender.sendMessage("§aThe team is now closed!");
+                    if (teamToEdit.isOpen()){
+                        teamToEdit.setOpen(false);
+                        commandSender.sendMessage("§aThe team is now closed!");
+                    } else {
+                        commandSender.sendMessage("§cThe team is already closed!");
+                    }
                 } else if (newValue.equalsIgnoreCase("open")){
-                    teamToEdit.setOpen(true);
-                    commandSender.sendMessage("§aThe team is now open!");
+                    if (!teamToEdit.isOpen()){
+                        teamToEdit.setOpen(true);
+                        commandSender.sendMessage("§aThe team is now open!");
+                    } else {
+                        commandSender.sendMessage("§cThe team is already open!");
+                    }
                 } else {
                     commandSender.sendMessage("§cInvalid option!");
+                }
+
+            case "explosions":
+                if (newValue.equalsIgnoreCase("enable")){
+                    if (!teamToEdit.isExplosionsEnabled()){
+                        teamToEdit.setExplosionsEnabled(true);
+                        commandSender.sendMessage("§aExplosions are now enabled!");
+                    } else {
+                        commandSender.sendMessage("§cExplosions are already enabled!");
+                    }
+
+                } else if (newValue.equalsIgnoreCase("disable")){
+                    if (teamToEdit.isExplosionsEnabled()){
+                        teamToEdit.setExplosionsEnabled(false);
+                        commandSender.sendMessage("§aExplosions are now disabled!");
+                    } else {
+                        commandSender.sendMessage("§cExplosions are already disabled!");
+                    }
                 }
         }
 

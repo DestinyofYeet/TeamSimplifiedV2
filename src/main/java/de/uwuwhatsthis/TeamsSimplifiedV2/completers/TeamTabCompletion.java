@@ -65,12 +65,19 @@ public class TeamTabCompletion implements TabCompleter {
                     add("tag");
                     add("color");
                     add("accessibility");
+                    add("explosions");
                 }};
 
             } else if (args.length == 4 && args[0].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("accessibility")) {
                 return new ArrayList<>() {{
                     add("open");
                     add("closed");
+                }};
+
+            } else if (args.length == 4 && args[0].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("explosions")) {
+                return new ArrayList<>() {{
+                    add("enable");
+                    add("disable");
                 }};
 
             } else if (args.length == 4  && args[0].equalsIgnoreCase("edit") && args[2].equalsIgnoreCase("color")) {

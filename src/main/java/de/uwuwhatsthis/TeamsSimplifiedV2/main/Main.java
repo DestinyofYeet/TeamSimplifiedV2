@@ -4,6 +4,8 @@ import de.uwuwhatsthis.TeamsSimplifiedV2.commands.ChunkCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.commands.TeamCommand;
 import de.uwuwhatsthis.TeamsSimplifiedV2.completers.ChunkTabCompleter;
 import de.uwuwhatsthis.TeamsSimplifiedV2.completers.TeamTabCompletion;
+import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnEntityDamage;
+import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnEntityExplodeEvent;
 import de.uwuwhatsthis.TeamsSimplifiedV2.events.OnPlayerJoinEvent;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
 import de.uwuwhatsthis.TeamsSimplifiedV2.teams.TeamManager;
@@ -49,6 +51,8 @@ public class Main extends JavaPlugin {
 
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new OnPlayerJoinEvent(), this);
+        pluginManager.registerEvents(new OnEntityExplodeEvent(), this);
+        pluginManager.registerEvents(new OnEntityDamage(), this);
 
         if (config.getBoolean(Defaults.CONFIG_BSTATS_ENABLE.getValue())){
             new Metrics(this, 20170);

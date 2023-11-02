@@ -1,6 +1,7 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.commands.team;
 
 import de.uwuwhatsthis.TeamsSimplifiedV2.main.Main;
+import de.uwuwhatsthis.TeamsSimplifiedV2.teams.Team;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Defaults;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Errors;
 import de.uwuwhatsthis.TeamsSimplifiedV2.utils.Utils;
@@ -60,7 +61,8 @@ public class TeamCreateCommand {
         Errors status = Main.getManager().createTeam(teamName, teamTag, color, player);
 
         if (status == Errors.SUCCESS){
-            player.sendMessage("§aSuccessfully created team §6" + teamName + "§a!");
+            Team team = Main.getManager().getTeamByPlayer(player);
+            player.sendMessage("§aSuccessfully created team " + team.getColor().replace("&", "§") + teamName + "§a!");
         } else {
             player.sendMessage(status.getValue());
         }

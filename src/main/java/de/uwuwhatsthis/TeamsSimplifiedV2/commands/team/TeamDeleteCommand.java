@@ -30,7 +30,7 @@ public class TeamDeleteCommand {
         }
 
         if (commandSender.hasPermission("TeamsSimplifiedV2.team.delete.others")){
-            commandSender.sendMessage("§cPlease run §6/team confirmdelete " + team.getName() + "§a to delete your team!");
+            commandSender.sendMessage("§cPlease run §6/team confirmdelete " + team.getName() + "§c to delete your team!");
             return true;
         }
 
@@ -43,7 +43,7 @@ public class TeamDeleteCommand {
             return true;
         }
 
-        player.sendMessage("§cPlease run §6/team confirmdelete " + team.getName() + "§a to delete your team!");
+        player.sendMessage("§cPlease run §6/team confirmdelete " + team.getName() + "§c to delete your team!");
 
         return true;
     }

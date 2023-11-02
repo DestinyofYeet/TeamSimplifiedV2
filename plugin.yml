@@ -42,10 +42,15 @@ permissions:
       TeamsSimplifiedV2.chunk.claim: true
       TeamsSimplifiedV2.chunk.unclaim: true
       TeamsSimplifiedV2.chunk.removeclaim: false
+      TeamsSimplifiedV2.chunk.info: true
 
   TeamsSimplifiedV2.chunk.overrideaccess:
     description: Lets you do stuff in a claimed chunk as if it would be yours
     default: op
+
+  TeamsSimplifiedV2.chunk.info:
+    description: Lets you see the info of a chunk
+    default: true
 
   TeamsSimplifiedV2.chunk.chunk:
     description: Lets you run the /chunk command

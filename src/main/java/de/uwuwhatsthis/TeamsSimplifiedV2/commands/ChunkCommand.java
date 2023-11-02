@@ -1,7 +1,6 @@
 package de.uwuwhatsthis.TeamsSimplifiedV2.commands;
 
-import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunk.ChunkClaimCommand;
-import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunk.ChunkUnclaimCommand;
+import de.uwuwhatsthis.TeamsSimplifiedV2.commands.chunk.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,7 +23,13 @@ public class ChunkCommand implements CommandExecutor {
         return switch (arg) {
             case "claim" -> new ChunkClaimCommand().onCommand(commandSender, command, s, args);
             case "unclaim" -> new ChunkUnclaimCommand().onCommand(commandSender, command, s, args);
-            default -> true;
+            case "info" -> new ChunkInfoCommand().onCommand(commandSender, command, s, args);
+            case "revoke-claim" -> new ChunkRevokeClaim().onCommand(commandSender, command, s, args);
+            case "explosions" -> new ChunkExplosionsCommand().onCommand(commandSender, command, s, args);
+            default -> {
+                commandSender.sendMessage("§cInvalid option!");
+                yield true;
+            }
         };
     }
 }

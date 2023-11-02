@@ -13,6 +13,10 @@ public class Chunk implements Comparable<Chunk> {
 
     private boolean isChunkLoaded;
 
+    public Chunk(org.bukkit.Chunk chunk){
+        this(chunk.getX(), chunk.getZ(), chunk.getWorld().getUID());
+    }
+
     public Chunk(int chunkX, int chunkZ, UUID worldID){
         this.chunkX = chunkX;
         this.chunkZ = chunkZ;
@@ -74,6 +78,14 @@ public class Chunk implements Comparable<Chunk> {
 
     public boolean isChunkLoaded() {
         return isChunkLoaded;
+    }
+
+    public UUID getWorldID() {
+        return worldID;
+    }
+
+    public boolean isExplosionEnabledSet() {
+        return explosionEnabledSet;
     }
 
     public void setChunkLoaded(boolean chunkLoaded) {
