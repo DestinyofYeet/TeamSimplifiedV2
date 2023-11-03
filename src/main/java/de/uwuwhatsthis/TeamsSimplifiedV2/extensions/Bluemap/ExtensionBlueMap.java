@@ -14,6 +14,7 @@ import org.bukkit.World;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class ExtensionBlueMap {
     private final Object lock;
@@ -100,7 +101,10 @@ public class ExtensionBlueMap {
 
             Main.getPlugin().getLogger().info("Rendering claimed chunks");
 
+            int k = 0;
+
             for (BlueMapWorld world: api.getWorlds()){
+                k++;
                 for (BlueMapMap map: world.getMaps()){
                     for (String key: putChunks){
                         map.getMarkerSets().remove(key);
@@ -110,6 +114,8 @@ public class ExtensionBlueMap {
                 int i = 0;
                 for (Team team: Main.getManager().getAllTeams()){
                     ArrayList<Chunk> currentWorldChunks = new ArrayList<>();
+
+                    Main.getPlugin().getLogger().info("Rendering chunks for team " + team.getName() + " in world " + world.getId());
 
                     for (Chunk chunk: team.getClaimedChunks()){
                         if (chunk.getWorldUUID().toString().equals(world.getId())){
@@ -136,24 +142,30 @@ public class ExtensionBlueMap {
 
                     for (Shape shape: shapes){
                         j++;
-                        ExtrudeMarker marker = ExtrudeMarker.builder().label("Claimed by " + team.getName())
+                        ExtrudeMarker marker = ExtrudeMarker.builder()
+                                .label("Claimed by " + team.getName())
                                 .fillColor(ColorMapping.getColor(team.getColor()))
                                 .lineColor(ColorMapping.getColor(team.getColor()))
                                 .shape(shape, serverWorld.getMinHeight(), serverWorld.getMaxHeight())
                                 .build();
-                        String key = i + "-" + j;
+                        String key = team.getName() + "-" + i + "-" + j + "-" + k;
                         set.put(key, marker);
 
                         putChunks.add(key);
                     }
 
+                    Main.getPlugin().getLogger().info("Created shape for team " + team.getName() + " in world " + serverWorld.getName());
+
                     int h = 0;
                     for (BlueMapMap map: world.getMaps()){
                         h++;
-                        String key = i + "-" + h;
+                        String key = team.getName() + "-" + i + "-" + h + "-" + k;
+                        Main.getPlugin().getLogger().info("Created marker for team " + team.getName() + " with key " + key + " in world " + serverWorld.getName());
                         map.getMarkerSets().put(key, set);
                         putChunks.add(key);
                     }
+
+                    Main.getPlugin().getLogger().info("Created markers for team " + team.getName() + " in world " + serverWorld.getName());
                 }
             };
         }
